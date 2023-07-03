@@ -7,7 +7,7 @@ targets:
         import: "package:single_import_generator/single_import_generator.dart"
         builder_factories: ["single_import_generator"]
         build_extensions:
-          .dart:
-            - .index.dart
+          'lib/**.dart':
+            - 'lib/**.index.dart'
         auto_apply: dependents
         build_to: source
