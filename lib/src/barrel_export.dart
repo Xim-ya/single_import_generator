@@ -21,13 +21,13 @@ void exportDirectory(String targetDirectory) {
 void main(List<String> arguments) {
   final parser = ArgParser();
   parser.addOption('target',
-      abbr: 't', help: 'Specify the target directory', valueHelp: 'directory');
+      abbr: 't', help: '대상 디렉토리를 지정하세요', valueHelp: 'directory');
 
   final argResults = parser.parse(arguments);
   final targetDirectory = argResults['target'] as String?;
 
   if (targetDirectory == null) {
-    print('Please specify the target directory using -t or --target option.');
+    print('대상 디렉토리를 -t 또는 --target 옵션으로 지정해주세요.');
     return;
   }
 
