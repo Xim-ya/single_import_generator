@@ -1,5 +1,5 @@
-import 'package:single_import_generator/src/barrel_export.dart' as export;
-import 'package:single_import_generator/src/barrel_export_all.dart' as exportAll;
+import 'package:single_import_generator/src/barrel_export.dart';
+import 'package:single_import_generator/src/barrel_export_all.dart';
 
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
@@ -11,9 +11,9 @@ void main(List<String> arguments) {
   final targetDirectory = arguments.length > 1 ? arguments[1] : '';
 
   if (command == 'export') {
-    export.exportDirectory(targetDirectory);
+    exportDirectory(targetDirectory);
   } else if (command == 'export all') {
-    exportAll.exportAll(targetDirectory);
+    exportAll(targetDirectory);
   } else {
     print('Invalid command: $command');
   }
