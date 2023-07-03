@@ -25,5 +25,8 @@ dev_dependencies:
 flutter:
 
 executables:
-  - barrel_export
-  - barrel_export_all
+  barrel_export:
+    script: bin/barrel_export.dart
+
+  barrel_export_all:
+    script: bin/barrel_export_all.dart
