@@ -1,9 +1,9 @@
-targets:
-  $default:
-    builders:
-      single_import_generator|single_import:
-        generate_for:
-          - lib/**.dart
-        options:
-          build_extensions:
-            '.dart': ['.index.dart']
+#targets:
+#  $default:
+#    builders:
+#      single_import_generator|single_import:
+#        generate_for:
+#          - lib/**.dart
+#        options:
+#          build_extensions:
+#            '.dart': ['.index.dart']

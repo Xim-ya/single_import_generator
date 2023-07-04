@@ -65,7 +65,7 @@ class IndexGenerator {
 
     try {
       indexFile.writeAsStringSync(filteredExportStatements.join('\n'));
-      print('Single Import Created $indexFilePath [$addedCount file added]');
+      print('Single Import Created $indexFilePath [$addedCount is manged]');
     } catch (e) {
       print('Error writing to file: $e');
     }
