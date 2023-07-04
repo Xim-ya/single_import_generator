@@ -1,20 +1,27 @@
 import 'package:single_import_generator/src/barrel_export.dart';
-import 'package:single_import_generator/src/barrel_export_all.dart';
 
 void main(List<String> arguments) {
-  if (arguments.isEmpty) {
-    print('Please provide a valid command.');
+  String? directory;
+  bool includeSubdirectories = true;
+
+  for (final arg in arguments) {
+    if (arg.startsWith('-target=')) {
+      directory = arg.substring(8);
+    } else if (arg == 'all') {
+      includeSubdirectories = true;
+    } else if (arg == 'dir') {
+      includeSubdirectories = false;
+    }
+  }
+
+  if (directory == null) {
+    print('Please provide the target directory using -target option.');
     return;
   }
 
-  final command = arguments[0];
-  final targetDirectory = arguments.length > 1 ? arguments[1] : '';
-
-  if (command == 'export') {
-    exportDirectory(targetDirectory);
-  } else if (command == 'export all') {
-    exportAll(targetDirectory);
-  } else {
-    print('Invalid command: $command');
+  try {
+    generateIndex(directory, includeSubdirectories: includeSubdirectories);
+  } catch (e) {
+    print('An error occurred: $e');
   }
 }

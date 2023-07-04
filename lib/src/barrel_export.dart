@@ -1,19 +1,34 @@
 import 'dart:io';
 
+void generateIndex(String directory, {bool includeSubdirectories = true}) {
+  final targetDirectory = Directory(directory);
 
-void exportDirectory(String targetDirectory) {
-  var directory = Directory(targetDirectory);
-  var files = directory.listSync();
-
-  var exportCode = '';
-
-  for (var file in files) {
-    if (file is File && file.path.endsWith('.dart')) {
-      var fileName = file.uri.pathSegments.last;
-      exportCode += "export '$fileName';\n";
-    }
+  if (!targetDirectory.existsSync()) {
+    print('Directory not found: $directory');
+    return;
   }
 
-  var indexFile = File('$targetDirectory/index.dart');
-  indexFile.writeAsStringSync(exportCode);
+  final indexFilePath = '${targetDirectory.path}/index.dart';
+  final exportStatements = [];
+
+  void generateExportStatements(Directory dir) {
+    dir.listSync().forEach((file) {
+      if (file is File) {
+        final fileName = file.path.split('/').last;
+        if (fileName.endsWith('.dart') && fileName != 'index.dart') {
+          final exportStatement = "export '${file.path.split('$directory/').last}';";
+          exportStatements.add(exportStatement);
+        }
+      } else if (includeSubdirectories && file is Directory) {
+        generateExportStatements(file);
+      }
+    });
+  }
+
+  generateExportStatements(targetDirectory);
+
+  final indexFile = File(indexFilePath);
+  indexFile.writeAsStringSync(exportStatements.join('\n'));
+
+  print('Created $indexFilePath');
 }
