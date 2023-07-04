@@ -1,3 +1,4 @@
 library single_import_generator;
 
-export 'src/barrel_export.dart';
+export 'src/index_generator.dart';
+export 'src/single_import_annotation.dart';

@@ -1,14 +1,9 @@
 targets:
   $default:
     builders:
-      generate_index_builder:
+      single_import_generator|single_import:
         generate_for:
           - lib/**.dart
         options:
-          import: "package:single_import_generator/single_import_generator.dart"
-          builder_factories: ["single_import_generator"]
           build_extensions:
-            'lib/**.dart':
-              - 'lib/**.index.dart'
-        # auto_apply: dependents
-        # build_to: source
+            '.dart': ['.index.dart']

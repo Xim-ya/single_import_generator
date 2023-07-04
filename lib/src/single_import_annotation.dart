@@ -1,0 +1,3 @@
+class SingleImport {
+  const SingleImport();
+}

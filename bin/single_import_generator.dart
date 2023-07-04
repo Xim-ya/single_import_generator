@@ -1,27 +1,14 @@
-import 'package:single_import_generator/src/barrel_export.dart';
+import 'package:single_import_generator/src/index_generator.dart';
 
 void main(List<String> arguments) {
-  String? directory;
-  bool includeSubdirectories = true;
-
-  for (final arg in arguments) {
-    if (arg.startsWith('-target=')) {
-      directory = arg.substring(8);
-    } else if (arg == 'all') {
-      includeSubdirectories = true;
-    } else if (arg == 'dir') {
-      includeSubdirectories = false;
-    }
-  }
-
-  if (directory == null) {
-    print('Please provide the target directory using -target option.');
+  if (arguments.isEmpty) {
+    print('Please provide the output directory argument.');
     return;
   }
 
-  try {
-    generateIndex(directory, includeSubdirectories: includeSubdirectories);
-  } catch (e) {
-    print('An error occurred: $e');
-  }
+  final outputDirectoryArgument = arguments.first;
+  final outputDirectoryKeyValue = outputDirectoryArgument.split('=')[1];
+
+  final generator = IndexGenerator();
+  generator.generateExportIndex(outputDirectoryKeyValue);
 }
