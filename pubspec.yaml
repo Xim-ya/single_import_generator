@@ -26,7 +26,5 @@ flutter:
 
 executables:
   barrel_export:
-    script: bin/barrel_export.dart
+    script: bin/single_import_generator.dart
 
-  barrel_export_all:
-    script: bin/barrel_export_all.dart
