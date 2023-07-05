@@ -20,14 +20,14 @@
 </p><br>    
 
 
+
 # Key Features
-    
 
 * 🔑 Easy to use
 * 🗂️ Enhanced code organization
 * ⏰ Save time and effort by eliminating the need to write repetitive import statements for multiple files.
 
-
+<br/>
 
 
 # Installing
@@ -51,9 +51,13 @@ Run the following command in your terminal or command prompt:
 $ flutter pub get
 ```
 
+
 3. Generate Import Index 
 
 Generate a Import Index statement using the command-line tool. Check the details below.
+
+
+<br/>
 
 
 # Usage - Command-Line Tool
@@ -97,6 +101,7 @@ $ dart run single_import_generator -target=lib/presentation/common dir
 ```
 Similarly, a barrel file named index.dart is generated in the specified directory, allowing you to import multiple files from that directory with a single import statement.
 
+<br/>
 
 ### 3. Generating Import Index Files with @SingleImport Annotation
 In addition to generating import index files for directories, you can also use the @SingleImport() annotation to generate an index file that includes export statements for all Dart files in the same directory. This can be done using the following command:
