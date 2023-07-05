@@ -1,6 +1,6 @@
 name: single_import_generator
 description: A new Flutter project.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/Xim-ya/single_import_generator
 
 environment:
@@ -8,22 +8,19 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  args: ^2.4.2
   flutter:
     sdk: flutter
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
-#executables:
-#  barrel_export:
-#    script: bin/single_import_annotation.dart
+executables:
+  barrel_export: bin/barrel_export.dart
+  annotation_export: bin/annotation_export.dart
 

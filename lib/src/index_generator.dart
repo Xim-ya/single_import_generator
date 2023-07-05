@@ -17,7 +17,7 @@ class IndexGenerator {
 
     // 이전에 저장된 index.dart 파일이 있는 경우, 해당 파일을 읽어 기존 export 구문을 가져옵니다.
     final existingExportStatements =
-    indexFile.existsSync() ? indexFile.readAsLinesSync() : [];
+        indexFile.existsSync() ? indexFile.readAsLinesSync() : [];
 
     void processDirectory(Directory dir, String currentPath) {
       for (var entity in dir.listSync()) {
@@ -27,7 +27,7 @@ class IndexGenerator {
             final fileContent = entity.readAsStringSync();
             if (fileContent.contains('@SingleImport')) {
               final packagePath =
-              path.join('package:soon_sak', currentPath, fileName);
+                  path.join('package:soon_sak', currentPath, fileName);
               final exportStatement = "export '$packagePath';";
               exportStatements.add(exportStatement);
             }
@@ -65,7 +65,8 @@ class IndexGenerator {
 
     try {
       indexFile.writeAsStringSync(filteredExportStatements.join('\n'));
-      print('Single Import Created $indexFilePath [$addedCount is manged]');
+      print(
+          'Index file generated successfully at: $indexFilePath [$addedCount export file(s) managed]');
     } catch (e) {
       print('Error writing to file: $e');
     }
