@@ -21,6 +21,8 @@ dev_dependencies:
 flutter:
 
 executables:
-  barrel_export: bin/barrel_export.dart
-  annotation_export: bin/annotation_export.dart
+  barrel_export:
+    script: bin/barrel_export.dart
+  annotation_export:
+    script: bin/annotation_export.dart
 
