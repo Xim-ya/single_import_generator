@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
-class IndexGenerator {
+class AnnotationIndexGenerator {
   final List<String> exportStatements = [];
 
   void generateExportIndex(String outputDirectory) {

@@ -8,7 +8,6 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  args: ^2.4.2
   flutter:
     sdk: flutter
 
@@ -18,11 +17,7 @@ dev_dependencies:
     sdk: flutter
 
 
-flutter:
 
-executables:
-  barrel_export:
-    script: bin/barrel_export.dart
-  annotation_export:
-    script: bin/annotation_export.dart
+
+
 

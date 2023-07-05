@@ -18,7 +18,7 @@ void main(List<String> arguments) {
 
   if (pathArg.startsWith('-path=')) {
     final passedPath = pathArg.substring('-path='.length);
-    final generator = IndexGenerator();
+    final generator = AnnotationIndexGenerator();
     generator.generateExportIndex(passedPath);
     return;
   }
