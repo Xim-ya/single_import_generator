@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
+import 'package:yaml/yaml.dart';
 
 class AnnotationIndexGenerator {
   final List<String> exportStatements = [];
@@ -12,10 +13,16 @@ class AnnotationIndexGenerator {
       return;
     }
 
+    // Load the project name from the yaml file
+    final yamlFile = File('pubspec.yaml');
+    final yamlContent = yamlFile.readAsStringSync();
+    final yaml = loadYaml(yamlContent);
+    final projectName = yaml['name']; // get projectName
+
     final indexFilePath = path.join(outputDirectory, 'index.dart');
     final indexFile = File(indexFilePath);
 
-    // 이전에 저장된 index.dart 파일이 있는 경우, 해당 파일을 읽어 기존 export 구문을 가져옵니다.
+    // If there is a previously saved index.dart file, read it to retrieve existing export statements.
     final existingExportStatements =
         indexFile.existsSync() ? indexFile.readAsLinesSync() : [];
 
@@ -27,7 +34,7 @@ class AnnotationIndexGenerator {
             final fileContent = entity.readAsStringSync();
             if (fileContent.contains('@SingleImport')) {
               final packagePath =
-                  path.join('package:soon_sak', currentPath, fileName);
+                  path.join('package:$projectName', currentPath, fileName);
               final exportStatement = "export '$packagePath';";
               exportStatements.add(exportStatement);
             }
@@ -42,20 +49,20 @@ class AnnotationIndexGenerator {
 
     processDirectory(targetDirectory, '');
 
-    // 기존의 export 구문과 새로운 export 구문을 합칩니다.
+    // Combine the existing export statements with the new export statements.
     final allExportStatements = [
       ...existingExportStatements,
       ...exportStatements
     ];
 
-    // 중복된 export 구문을 제거합니다.
+    // Remove duplicate export statements.
     final uniqueExportStatements = allExportStatements.toSet().toList();
 
     final addedCount = exportStatements.length;
 
-    // 사용하지 않는 모듈을 제거합니다.
+    // Remove unused modules.
     final filteredExportStatements = uniqueExportStatements.where((statement) {
-      if (statement.startsWith('export \'package:soon_sak/')) {
+      if (statement.startsWith('export \'package:$projectName/')) {
         final packageName = statement.split('\'')[1].split('/').last;
         return exportStatements
             .any((exportStatement) => exportStatement.contains(packageName));
